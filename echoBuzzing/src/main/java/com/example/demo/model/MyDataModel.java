@@ -17,7 +17,7 @@ public class MyDataModel {
         try {
             dataSource.setServerName("localhost");
             dataSource.setUser("root");
-            dataSource.setPassword("123456");
+            dataSource.setPassword("121982");
             dataSource.setDatabaseName("movie");
             dataSource.setServerTimezone("UTC");
 

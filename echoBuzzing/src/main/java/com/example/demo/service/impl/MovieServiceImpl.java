@@ -1,7 +1,10 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.VO.MovieVO;
+import com.example.demo.controller.MovieController;
+import com.example.demo.controller.UserController;
 import com.example.demo.dao.Movie;
+import com.example.demo.mapper.MovieClassificationMapper;
 import com.example.demo.mapper.MovieMapper;
 import com.example.demo.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +25,9 @@ public class MovieServiceImpl implements MovieService {
 
     @Autowired
     MovieMapper movieMapper;
+
+    @Autowired
+    MovieClassificationMapper movieClassificationMapper;
 
     @Autowired
     CommentServiceImpl commentService;
@@ -75,5 +81,22 @@ public class MovieServiceImpl implements MovieService {
             movieVOs.add(new MovieVO(movie));
         }
         return movieVOs;
+    }
+
+    @Override
+    public void insertMovie(Movie movie) {
+        movieMapper.insertMovie(movie);
+        movieClassificationMapper.deleteMovieClassification();
+        movieClassificationMapper.updateMovieClassification();
+    }
+
+    @Override
+    public void deleteMovieById(Integer id) {
+        movieMapper.deleteMovieById(id);
+    }
+
+    @Override
+    public ArrayList<Movie> geyAllMovies() {
+        return movieMapper.selectAllMovies();
     }
 }

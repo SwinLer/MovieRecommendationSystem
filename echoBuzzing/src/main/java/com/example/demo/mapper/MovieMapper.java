@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.ArrayList;
 
 @Mapper
-@ResponseBody
 public interface MovieMapper {
     ArrayList<Movie> selectCollectMoviesByUserId(int userId);
     String selectMovieNameById(int id);
@@ -17,4 +16,7 @@ public interface MovieMapper {
     ArrayList<Movie> fuzzySelectMovieByName(@Param("name") String name);
     ArrayList<Movie> fuzzySelectMovieByType(@Param("type") String type);
     ArrayList<Movie> searchHotMovies();
+    void insertMovie(Movie movie);
+    void deleteMovieById(Integer id);
+    ArrayList<Movie> selectAllMovies();
 }

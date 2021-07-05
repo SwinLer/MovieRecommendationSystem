@@ -57,4 +57,15 @@
         where name = #{param1}
     </update>
 
+    <delete id="deleteUser">
+        delete
+        from user
+        where id = #{param1}
+    </delete>
+
+    <select id="selectAllUsers" resultType="com.example.demo.dao.User">
+        select *
+        from user
+    </select>
+
 </mapper>

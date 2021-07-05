@@ -1,10 +1,13 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.controller.UserController;
 import com.example.demo.dao.User;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 
 
 /**
@@ -54,5 +57,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public String selectPasswordById(int id) {
         return userMapper.selectPasswordById(id);
+    }
+
+    @Override
+    public void deleteUser(int id) {
+        userMapper.deleteUser(id);
+    }
+
+    @Override
+    public ArrayList<User> getAllUsers() {
+        return userMapper.selectAllUsers();
     }
 }

@@ -4,8 +4,10 @@ import com.example.demo.VO.CommentVO;
 import com.example.demo.dao.Comment;
 import com.example.demo.service.impl.CommentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +21,7 @@ import java.util.ArrayList;
  * @Date 2021/6/23 16:01
  * @Version 1.0
  */
-
+@Controller
 @RestController
 public class CommentController {
 
@@ -33,6 +35,7 @@ public class CommentController {
     }
 
     @PostMapping("/insertComment")
+    @ResponseBody
     public int insertComment(HttpServletRequest httpServletRequest){
         String content = httpServletRequest.getParameter("content");
         Date date = new Date(System.currentTimeMillis());

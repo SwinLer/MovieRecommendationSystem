@@ -1,6 +1,8 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.VO.CommentVO;
+import com.example.demo.controller.CommentController;
+import com.example.demo.controller.UserController;
 import com.example.demo.dao.Comment;
 import com.example.demo.mapper.CommentMapper;
 import com.example.demo.service.CommentService;
@@ -78,6 +80,11 @@ public class CommentServiceImpl implements CommentService {
         for(Comment comment:comments)
             commentVOS.add(makeCommentVO(comment));
         return commentVOS;
+    }
+
+    @Override
+    public ArrayList<Comment> getAllComments() {
+        return commentMapper.selectAllComments();
     }
 
     CommentVO makeCommentVO(Comment comment){

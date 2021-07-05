@@ -4,6 +4,8 @@ import com.example.demo.dao.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+
 /**
  * @ClassName UserMapper
  * @Description
@@ -22,4 +24,6 @@ public interface UserMapper {
     String selectPasswordByUserName(String name);
     void changePassword(String name, String password);
     String selectPasswordById(int id);
+    void deleteUser(int id);
+    ArrayList<User> selectAllUsers();
 }

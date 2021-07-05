@@ -9,9 +9,7 @@ import com.example.demo.service.impl.CommentServiceImpl;
 import com.example.demo.service.impl.MovieServiceImpl;
 import com.example.demo.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +33,6 @@ public class UserController {
     @Autowired
     CommentServiceImpl commentService;
 
-    //update
     @Autowired
     RecommendServiceImpl recommendService;
 
@@ -46,12 +43,12 @@ public class UserController {
      */
     @GetMapping("/register")
     public RegisterAndLoginReturn register(HttpServletRequest servletRequest){
-        RegisterAndLoginReturn registerAndLoginReturn = new RegisterAndLoginReturn(false, "", null);
+        RegisterAndLoginReturn registerAndLoginReturn = new RegisterAndLoginReturn(false, "", (UserVO) null);
         String name = servletRequest.getParameter("name");
         String firstPassword = servletRequest.getParameter("firstPassword");
         String secondPassword = servletRequest.getParameter("secondPassword");
         String mail = servletRequest.getParameter("mail");
-        String image = "//";
+        String image = "../static/images/user/user.png";
         if(userService.searchUserIdByName(name)!= null)
             registerAndLoginReturn.setWarning("用户名已存在");
         else{
@@ -82,7 +79,7 @@ public class UserController {
         String name = httpServletRequest.getParameter("name");
         String password = httpServletRequest.getParameter("password");
         RegisterAndLoginReturn registerAndLoginReturn =
-                new RegisterAndLoginReturn(false, "",null);
+                new RegisterAndLoginReturn(false, "",(UserVO) null);
         if(userService.searchUserIdByName(name) == null){
             registerAndLoginReturn.setWarning("用户名不存在");
         }else{
@@ -106,7 +103,7 @@ public class UserController {
         String secondPassword = httpServletRequest.getParameter("secondPassword");
         String databasePassword = userService.searchPasswordByUserName(name);
         RegisterAndLoginReturn registerAndLoginReturn =
-                new RegisterAndLoginReturn(false, "",null);
+                new RegisterAndLoginReturn(false, "",(UserVO) null);
         if(userService.searchUserIdByName(name) == null){
             registerAndLoginReturn.setWarning("用户名不存在");
             return registerAndLoginReturn;
