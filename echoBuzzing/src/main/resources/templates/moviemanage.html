@@ -190,65 +190,74 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="tripReviseModalLabel">修改车次信息</h4>
+                    <h4 class="modal-title" id="tripReviseModalLabel">修改电影信息</h4>
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">起始站</label>
+                            <label class="col-sm-2 control-label">电影名</label>
                             <div class="col-sm-10">
-                                <input type="text" name="orginLocation" class="form-control" id="orginLocation_revise_input" placeholder="起始站">
+                                <input type="text" name="movieName" class="form-control" id="moviename_revise_input" placeholder="电影名">
                                 <span class="help-block"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">目的站</label>
+                            <label class="col-sm-2 control-label">地区</label>
                             <div class="col-sm-10">
-                                <input type="text" name="destinationLocation" class="form-control" id="destinationLocation_revise_input" placeholder="目的站">
+                                <input type="text" name="Location" class="form-control" id="moviearea_revise_input" placeholder="地区">
                                 <span class="help-block"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">发车时间</label>
+                            <label class="col-sm-2 control-label">电影简介</label>
                             <div class="col-sm-10">
-                                <input type="time" name="startTime" class="form-control" id="startTime_revise_input" placeholder="发车时间">
+                                <input type="text" name="movieintro" class="form-control" id="movieintroduction_revise_input" placeholder="电影简介">
                                 <span class="help-block"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">发车时间</label>
+                            <label class="col-sm-2 control-label">导演</label>
                             <div class="col-sm-10">
-                                <input type="time" name="reachTime" class="form-control" id="reachTime_revise_input" placeholder="到达时间">
+                                <input type="text" name="director" class="form-control" id="moviedirector_revise_input" placeholder="导演">
                                 <span class="help-block"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">跨越天数</label>
+                            <label class="col-sm-2 control-label">演员</label>
                             <div class="col-sm-10">
-                                <input type="number" name="spanDays" class="form-control" id="spanDays_revise_input" placeholder="跨越天数">
+                                <input type="text" name="acotr" class="form-control" id="movieactor_revise_input" placeholder="演员">
                                 <span class="help-block"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">车次号</label>
+                            <label class="col-sm-2 control-label">上映年份</label>
                             <div class="col-sm-10">
-                                <input type="text" name="carNum" class="form-control" id="carNum_revise_input" placeholder="车次时间">
+                                <input type="text" name="year" class="form-control" id="movieyear_revise_input" placeholder="上映年份">
                                 <span  class="help-block"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">价格</label>
+                            <label class="col-sm-2 control-label">时长</label>
                             <div class="col-sm-10">
-                                <input type="number" name="ticketPrice" class="form-control" id="ticketPrice_revise_input" placeholder="价格">
+                                <input type="text" name="time" class="form-control" id="movietime_revise_input" placeholder="时长">
                                 <span  class="help-block"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">数量</label>
+                            <label class="col-sm-2 control-label">类型</label>
                             <div class="col-sm-10">
-                                <input type="number" name="ticketNum" class="form-control" id="ticketNum_revise_input" placeholder="数量">
+                                <input type="text" name="movietype" class="form-control" id="movietype_revise_input" placeholder="类型">
                                 <span  class="help-block"></span>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">电影封面<label style="font-size:10px">(点击图片上传封面)</label></label>
+                            <div id="cover-img" style="width:100px;height:100px;display:inline;position:relative;">
+                                <input id="upload-input" style="position: absolute; top: 0; bottom: 0; left: 0;right: 0; opacity: 0;" type="file" accept="image/gif, image/jpg, image/png" onchange="showImg(this)"/>
+                                <img id="upload" src="../static/images/songlist/cover.png" style="width: 100px; height: 100px; vertical-align: middle;" />
+
+                            </div>
+
                         </div>
                     </form>
                 </div>

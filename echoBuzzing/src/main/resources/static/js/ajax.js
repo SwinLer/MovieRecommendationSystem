@@ -813,6 +813,7 @@ function dealImage(base64, w, callback) {
 /********电影管理start*********/
 function getAllMovies(){
 	deleteAddMovie()
+	reviseMovie()
 	$.ajax({
 		type:"get",
 		url:"/administrator/getAllMovies",
@@ -861,8 +862,9 @@ function build_movies_table(movielist){
 		var button2 = $("<button></button>").addClass("btn btn-danger btn-sm delete_btn").append($("<span></span>").addClass("glyphicon glyphicon-trash").attr("aria-hidden", true)).append("删除");
 		var td_btn = $("<td></td>").append(button1).append(" ").append(button2);
 		*/
+		var button1 = $("<button></button>").addClass("btn btn-primary btn-sm edit_btn").append($("<span></span>").addClass("glyphicon glyphicon-pencil").attr("aria-hidden", true)).append("修改");
 		var button2 = $("<button></button>").addClass("btn btn-danger btn-sm delete_btn").append($("<span></span>").addClass("glyphicon glyphicon-trash").attr("aria-hidden", true)).append("删除");
-		var td_btn = $("<td></td>").append(button2);
+		var td_btn = $("<td></td>").append(button1).append(button2);
 		$("<tr></tr>").append(checkBox).append(id).append(moviename).append(moviearea).append(movieintroduction).append(moviedirector).append(movieactor).append(movieyear).append(moviescore).append(movietime)
 			.append(movietype).append(movieimg).append(td_btn ).appendTo("#trips_table tbody");
 	})
@@ -1037,6 +1039,76 @@ function deleteAddMovie() {
 				}
 			})
 		}
+	})
+}
+
+function reviseMovie(){
+	$(document).on("click",".edit_btn",function () {
+		//清除表单数据
+		$("#tripReviseModal form")[0].reset();
+
+		var id= $(this).parent().parent().children("td").eq(1).text();
+		//将id的值传递给修改按钮的属性，方便发送Ajax请求
+		$("#trip_revise_btn").attr("edit-id",id);
+
+		var moviename=$(this).parent().parent().children("td").eq(2).text();
+		var moviearea=$(this).parent().parent().children("td").eq(3).text();
+		var movieintroduction=$(this).parent().parent().children("td").eq(4).text();
+		var moviedirector=$(this).parent().parent().children("td").eq(5).text();
+		var movieactor=$(this).parent().parent().children("td").eq(6).text();
+		var movieyear=$(this).parent().parent().children("td").eq(7).text();
+		var movietime=$(this).parent().parent().children("td").eq(8).text();
+		var movietype=$(this).parent().parent().children("td").eq(9).text();
+
+		var listimg=sessionStorage.imginf
+		$("#moviename_add_input").val(moviename);
+		$("#moviearea_add_input").val(moviearea);
+		$("#movieintroduction_add_input").val(movieintroduction);
+		$("#moviedirector_add_input").val(moviedirector);
+		$("#movieactor_add_input").val(movieactor);
+		$("#movieyear_add_input").val(movieyear);
+		$("#movietime_add_input").val(movietime);
+		$("#movietype_add_input").val(movietype);
+		//console.log($("#movietype_add_input").val())
+		$("#tripReviseModal").modal({
+			backdrop: "static"
+		})
+	});
+	//2.为模态框中的修改按钮绑定事件，更新员工信息
+	$("#trip_revise_btn").click(function () {
+		//2.验证通过后发送ajax请求保存更新的员工数据
+		//如果要直接发送PUT之类的请求
+		//在WEB.xml配置HttpPutFormContentFilter过滤器即可
+		//这里未使用如上所述方法
+		//获取编辑后的
+		var id = $(this).attr("edit-id");
+		var moviename = $("#moviename_add_input").val();
+		var moviearea = $("#moviearea_add_input").val();
+		var movieintroduction = $("#movieintroduction_add_input").val();
+		var moviedirector =$("#moviedirector_add_input").val();
+		var movieactor = $("#movieactor_add_input").val();
+		var movieyear =$("#movieyear_add_input").val();
+		var movietime =$("#movietime_add_input").val();
+		var movietype =$("#movietype_add_input").val();
+
+		$.ajax({
+			url:"http://localhost:8080/updateTripForAdmin",
+			type:"POST",
+			data:{id:id,orginLocation:orginLocation,destinationLocation:destinationLocation,startTime:startTime,reachTime:reachTime,spanDays:spanDays,carNum:carNum,ticketPrice:ticketPrice,ticketNum:ticketNum},
+			dataType:"json",
+			//contentType:"application/json;charset=UTF-8",
+			success:function () {
+				//1.关闭modal框
+				$("#tripReviseModal").modal('hide');
+				//2.来到当前页，显示刚才保存的数据
+				console.log("电影修改成功")
+				window.location.href="/admin/moviemanage"
+			},
+			error:function(){
+				console.log("电影修改失败")
+			}
+		})
+
 	})
 }
 /********电影管理end*********/
